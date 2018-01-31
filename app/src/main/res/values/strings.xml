@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">Coin</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="one">One</string>
+
+
+    <string name="fragment_watchlist">Watchlist</string>
+    <string name="fragment_alerts">Alerts</string>
+    <string name="fragment_news">News</string>
+
+    <string name="button_add_coin">+ Add Coin</string>
+    <string name="button_send">Send</string>
+
+    <!-- Cryptocurrencies symbols and names mapping -->
+    <string name="BTC">Bitcoin</string>
+    <string name="BCH">Bitcoin Cash/BCC</string>
+    <string name="XRP">Ripple</string>
+    <string name="ETH">Ether</string>
+    <string name="LTC">Litecoin</string>
+    <string name="OMG">Omisego</string>
+    <string name="GNT">Golem</string>
+    <string name="IOTA">MIOTA</string>
+
+    <string-array name="coins">
+        <item>BTC--ZEBPAY</item>
+        <item>BTC--KOINEX</item>
+        <item>BTC--UNOCOIN</item>
+        <item>BCH--KOINEX</item>
+        <item>XRP--KOINEX</item>
+        <item>ETH--KOINEX</item>
+        <item>LTC--KOINEX</item>
+        <item>OMG--KOINEX</item>
+        <item>GNT--KOINEX</item>
+        <item>IOTA--KOINEX</item>
+    </string-array>
+
+
 </resources>
