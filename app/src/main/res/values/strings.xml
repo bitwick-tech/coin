@@ -2,37 +2,65 @@
     <string name="app_name">Coin</string>
     <string name="edit_message">Enter a message</string>
     <string name="one">One</string>
+    <string name="goes_above">goes above</string>
+    <string name="goes_below">or goes below</string>
+    <string name="or">or</string>
+    <string name="alert_me">alert me</string>
+    <string name="save">Save</string>
 
 
     <string name="fragment_watchlist">Watchlist</string>
     <string name="fragment_alerts">Alerts</string>
     <string name="fragment_news">News</string>
 
-    <string name="button_add_coin">+ Add Coin</string>
-    <string name="button_send">Send</string>
+    <string name="shared_preference_followed_coins_file">tech.smartcrypto.followed_coins</string>
+    <string name="shared_preference_followed_coins_key">fc</string>
+
+    <string name="buttonTxt_add_coin">+ Add Coin</string>
+    <string name="buttonTxt_send">Send</string>
+    <string name="buttonTxt_add_alert">+ Add Alert</string>
+    <string name="buttonTxt_save">Save</string>
+    <string name="buttonTxt_click_to_select_coin">Click here to select a coin</string>
+
+    <string name="one_time">One-Time</string>
+    <string name="continuously">Continuously</string>
 
     <!-- Cryptocurrencies symbols and names mapping -->
-    <string name="BTC">Bitcoin</string>
-    <string name="BCH">Bitcoin Cash/BCC</string>
-    <string name="XRP">Ripple</string>
-    <string name="ETH">Ether</string>
-    <string name="LTC">Litecoin</string>
-    <string name="OMG">Omisego</string>
-    <string name="GNT">Golem</string>
-    <string name="IOTA">MIOTA</string>
+    <string name="btc">Bitcoin</string>
+    <string name="bch">Bitcoin Cash/BCC</string>
+    <string name="xrp">Ripple</string>
+    <string name="eth">Ether</string>
+    <string name="ltc">Litecoin</string>
+    <string name="omg">Omisego</string>
+    <string name="gnt">Golem</string>
+    <string name="miota">IOTA</string>
+    <string name="btc__zebpay">Bitcoin  ZEBPAY</string>
+    <string name="btc__unocoin">Bitcoin  UNOCOIN</string>
+    <string name="btc__koinex">Bitcoin  KOINEX</string>
+    <string name="xrp__koinex">Ripple  KOINEX</string>
+    <string name="bch__koinex">Bitcoin Cash/BCC  KOINEX</string>
+    <string name="eth__koinex">Ether  KOINEX</string>
+    <string name="ltc__koinex">Litecoin  KOINEX</string>
+    <string name="omg__koinex">Omisego  KOINEX</string>
+    <string name="miota__koinex">IOTA  KOINEX</string>
 
     <string-array name="coins">
-        <item>BTC--ZEBPAY</item>
-        <item>BTC--KOINEX</item>
-        <item>BTC--UNOCOIN</item>
-        <item>BCH--KOINEX</item>
-        <item>XRP--KOINEX</item>
-        <item>ETH--KOINEX</item>
-        <item>LTC--KOINEX</item>
-        <item>OMG--KOINEX</item>
-        <item>GNT--KOINEX</item>
-        <item>IOTA--KOINEX</item>
+        <item>btc__zebpay</item>
+        <item>btc__unocoin</item>
+        <item>btc__koinex</item>
+        <item>xrp__koinex</item>
+        <item>bch__koinex</item>
+        <item>eth__koinex</item>
+        <item>ltc__koinex</item>
+        <item>omg__koinex</item>
+        <item>miota__koinex</item>
     </string-array>
+
+    <string name="coinApiUrl">http://www.smartcrypto.tech/coins/</string>
+
+
+    <string name="delete">delete</string>
+    <string name="coin">Coin</string>
 
 
 </resources>

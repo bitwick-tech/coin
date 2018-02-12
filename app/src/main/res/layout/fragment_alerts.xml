@@ -1,16 +1,26 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_alerts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="tech.smartcrypto.neeraj.coin.fragments.AlertsFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/alertList"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/one"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:divider="@android:color/transparent"
+        android:paddingTop="8dp"
+        android:clipToPadding="false"
+        android:layout_margin="4dp"
+        android:dividerHeight="2dp"/>
+    <Button
+        android:id="@+id/button_add_alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/buttonTxt_add_alert"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

@@ -27,17 +27,18 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         if (position == 0) {
             return new WatchlistFragment();
-        } else if (position == 1){
+        } else {//if (position == 1){
             return new AlertsFragment();
-        } else {
-            return new NewsFragment();
         }
+//        else {
+//            return new NewsFragment();
+//        }
     }
 
     // This determines the number of tabs
     @Override
     public int getCount() {
-        return 3;
+        return 2;//3;
     }
 
     // This determines the title for each tab
@@ -49,8 +50,8 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
                 return mContext.getString(R.string.fragment_watchlist);
             case 1:
                 return mContext.getString(R.string.fragment_alerts);
-            case 2:
-                return mContext.getString(R.string.fragment_news);
+            //case 2:
+             //   return mContext.getString(R.string.fragment_news);
             default:
                 return null;
         }

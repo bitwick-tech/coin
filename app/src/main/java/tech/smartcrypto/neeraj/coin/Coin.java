@@ -1,26 +1,36 @@
 package tech.smartcrypto.neeraj.coin;
 
-import java.io.Serializable;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
+import android.support.annotation.NonNull;
 
 /**
  * Created by neeraj on 28/1/18.
  */
 
-class Coin implements Serializable {
+@Entity (tableName = "coins")
+public class Coin {
+
+    @PrimaryKey
+    @ColumnInfo(name = "_id")
+    @NonNull
     private String id;
-    private String description;
-    private float openPrice;
+
+    @ColumnInfo(name = "name")
+    private String name;
+
+    @ColumnInfo(name = "open_price")
+    private float openPrice = 0.0f;
+
+    @ColumnInfo(name = "current_price")
     private float currentPrice;
-    private String currency;
-    private TagEnum tag;
 
-    public TagEnum getTag() {
-        return tag;
-    }
+    @ColumnInfo(name = "currency")
+    private String currency = "INR";
 
-    public void setTag(TagEnum tag) {
-        this.tag = tag;
-    }
+    //@TypeConverters(DateConverter.class)
 
     public String getId() {
         return id;
@@ -30,12 +40,12 @@ class Coin implements Serializable {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public float getOpenPrice() {
@@ -61,20 +71,4 @@ class Coin implements Serializable {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
-
-    public enum TagEnum {
-        BLACK(R.color.black,"Black"), RED(R.color.red, "Red"),
-        GREEN(R.color.green, "Green"), BLUE(R.color.blue, "Blue"),YELLOW(R.color.yellow,"Yellow");
-        private int code;
-        private String name;
-        private TagEnum(int code, String name) {
-            this.code = code;
-            this.name = name;
-        }
-        public int getTagColor() {
-            return this.code;
-        }
-    }
-
-
 }
