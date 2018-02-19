@@ -40,6 +40,7 @@
         android:layout_below="@id/fragment_dialog_alert_coinBtn"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
+        android:textSize="16dp"
         android:layout_marginStart="10dp" />
 
     <TextView
@@ -78,7 +79,7 @@
         android:id="@+id/fragment_dialog_alert_goesBelowEdtTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:visibility="invisible"
         android:inputType="number"
         android:digits="0123456789."
@@ -90,7 +91,7 @@
         android:id="@+id/fragment_dialog_alert_alertMeTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:visibility="invisible"
         android:text="@string/alert_me"
         android:layout_below="@id/fragment_dialog_alert_goesBelowEdtTxt"
@@ -121,17 +122,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/fragment_dialog_alert_saveAlertBtn"
+        android:layout_alignParentStart="true"
         android:visibility="invisible"
+        android:layout_marginRight="8dp"
         android:text="@string/delete"
         android:background="@color/red"/>
 
     <Button
         android:id="@+id/fragment_dialog_alert_saveAlertBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@+id/fragment_dialog_alert_delAlertBtn"
+        android:layout_alignTop="@+id/fragment_dialog_alert_delAlertBtn"
+        android:layout_alignBottom="@+id/fragment_dialog_alert_delAlertBtn"
         android:visibility="invisible"
         android:text="@string/save"
         android:background="@color/blue"/>

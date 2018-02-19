@@ -15,7 +15,7 @@ import tech.smartcrypto.neeraj.coin.MainActivity;
 public class StartAlertServiceReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d("onReceive", "boot up message ********");
+        //Log.d("onReceive", "boot up message ********");
         //UtilFunctions.scheduleJob(context);
 //        if(!AlertService.isServiceRunning) {
 //            Intent service = new Intent(MainActivity.this, AlertService.class);

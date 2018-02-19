@@ -3,6 +3,7 @@
     package="tech.smartcrypto.neeraj.coin">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <meta-data
         android:name="android.webkit.WebView.EnableSafeBrowsing"
@@ -15,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:icon="@drawable/ic_launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +29,8 @@
             android:name=".AlertService"
             android:enabled="true"
             android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:icon="@drawable/ic_launcher"/>
 
 
 
@@ -44,6 +47,4 @@
 
 
     </application>
-
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 </manifest>

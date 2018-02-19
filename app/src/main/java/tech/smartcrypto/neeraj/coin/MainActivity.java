@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import tech.smartcrypto.neeraj.coin.fragments.WatchlistFragment;
+import utils.PriceTrackerAlarmTrigger;
+import utils.ServerInteractionHandler;
 import utils.UtilFunctions;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         if(!AlertService.isServiceRunning){
             Intent intent = UtilFunctions.handleDeviceManufacturer();
             if  (intent != null) {
-                Toast.makeText(getApplicationContext(),"Give permission to not miss any alert for price change.",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Give permission to not miss any alert.",Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         }
@@ -48,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
             Intent service = new Intent(MainActivity.this, AlertService.class);
             startService(service);
         }
+
+        //get and set alert and watchlist update frequency
+        ServerInteractionHandler.getFrequencyDataFromServer(getApplicationContext());
     }
 
 }

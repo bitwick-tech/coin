@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="64dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="@layout/round_corner_rectangle_list_item"
     android:layout_margin="8dp"
     android:padding="8dp">
 
@@ -29,6 +29,7 @@
         android:layout_marginStart="8dp"
         android:layout_toEndOf="@id/coin_layout_user_list_coinIconIv"
         android:layout_below="@+id/coin_layout_user_list_coinIdTv"
+        android:layout_toStartOf="@+id/coin_layout_user_list_cpChangeTv"
         />
 
 

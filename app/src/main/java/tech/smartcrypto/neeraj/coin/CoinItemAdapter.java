@@ -59,16 +59,19 @@ public class CoinItemAdapter extends ArrayAdapter<Coin> {
         Coin coin = coinList.get(position);
         int imgId = UtilFunctions.getResourseId(getContext(), coin.getId(), "drawable", getContext().getPackageName());
         if(imgId >= 0) h.coinImageIv.setImageResource(imgId);
-        h.coinNameTv.setText(coin.getName());
-        h.coinIdTv.setText(coin.getId().split("__")[0].toUpperCase());
-        h.coinPriceTv.setText("INR  " + UtilFunctions.formatFloatTo4Decimals(coin.getCurrentPrice()));
-        //TODO add percentage change
-        if(true){//coin.getOpenPrice() > 0.0f) {
+        if(coin.getName() != null) {
+            int lastIndexOfSpace = coin.getName().lastIndexOf( " ");
+            if(lastIndexOfSpace == -1)  lastIndexOfSpace = coin.getName().length();
+            h.coinNameTv.setText(coin.getName().substring(0, lastIndexOfSpace));
+        }
+        String[] idArr = coin.getId().split("__");
+        h.coinIdTv.setText(idArr[0].toUpperCase() + " " + idArr[1]);
+        h.coinPriceTv.setText("INR " + UtilFunctions.formatFloatTo4Decimals(coin.getCurrentPrice()));
+        if(coin.getOpenPrice() > 0.0f) {
             float percentageChange = ((coin.getCurrentPrice() - coin.getOpenPrice()) * 100) / coin.getOpenPrice();
-            percentageChange = -2.2f;
+            //percentageChange = 2.2f;
             h.coinPriceChangeTv.setVisibility(View.VISIBLE);
             h.coinPriceChangeTv.setText(UtilFunctions.formatFloatTo4Decimals(percentageChange) + " %");
-            //TODO add logic and image for up or down price change
             if(percentageChange != 0.0f) h.upOrDownIv.setVisibility(View.VISIBLE);
             if(percentageChange > 0.0f) {
                 h.coinPriceChangeTv.setTextColor(ContextCompat.getColor(getContext(), R.color.green));

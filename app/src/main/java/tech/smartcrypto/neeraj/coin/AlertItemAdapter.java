@@ -92,9 +92,24 @@ public class AlertItemAdapter extends ArrayAdapter<Alert> {
         }
         //h.downIv.setImageResource();
         h.cpTv.setText(" INR " + UtilFunctions.formatFloatTo4Decimals(alert.getCurrentPrice()));
-        if(alert.getLowPrice() > 0.0f && alert.getLowPrice() > alert.getCurrentPrice()) h.cpTv.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
-        else if(alert.getHighPrice() > 0.0f && alert.getHighPrice() < alert.getCurrentPrice()) h.cpTv.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
-        else h.cpTv.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+
+        int color;
+        if(alert.getLowPrice() > 0.0f && alert.getLowPrice() > alert.getCurrentPrice()) {
+            color = ContextCompat.getColor(getContext(), R.color.red);
+            h.cpTv.setTextColor(color);
+            h.lpTv.setTextColor(color);
+        }
+        else if(alert.getHighPrice() > 0.0f && alert.getHighPrice() < alert.getCurrentPrice()) {
+            color = ContextCompat.getColor(getContext(), R.color.green);
+            h.cpTv.setTextColor(color);
+            h.hpTv.setTextColor(color);
+        }
+        else {
+            color = ContextCompat.getColor(getContext(), R.color.white);
+            h.cpTv.setTextColor(color);
+            h.lpTv.setTextColor(color);
+            h.hpTv.setTextColor(color);
+        }
         //h.upWithPriceIv.setImageResource();
         //h.downWithPriceIv.setImageResource();
         h.hpTv.setText(UtilFunctions.formatFloatTo4Decimals(alert.getHighPrice()));

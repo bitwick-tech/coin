@@ -1,7 +1,6 @@
 package utils;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -9,7 +8,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
 import com.google.common.base.Joiner;
 
 import org.json.JSONObject;
@@ -19,6 +17,8 @@ import java.util.Map;
 import java.util.Set;
 
 import tech.smartcrypto.neeraj.coin.Coin;
+import tech.smartcrypto.neeraj.coin.R;
+import tech.smartcrypto.neeraj.coin.fragments.WatchlistFragment;
 
 /**
  * Created by neerajlajpal on 05/02/18.
@@ -93,8 +93,8 @@ public class ServerInteractionHandler {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError e) {
-                e.printStackTrace();
-                Toast.makeText(mCtx, e + "error", Toast.LENGTH_LONG).show();
+                //e.printStackTrace();
+                //Toast.makeText(mCtx, e + "error", Toast.LENGTH_LONG).show();
             }
         })
         {
@@ -107,6 +107,41 @@ public class ServerInteractionHandler {
             }
         };
         SingletonVolleyRequestQueue.getInstance(mCtx).addToRequestQueue(jsonObjectRequest);
+    }
+
+    public static void getFrequencyDataFromServer(Context ctx) {
+        // Get a RequestQueue
+        RequestQueue queue = SingletonVolleyRequestQueue.getInstance(ctx).
+                getRequestQueue();
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, ctx.getResources().getString(R.string.frequencyApiUrl), null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Map<String,String> h = new HashMap<>(2);
+                        if(response.optString("a") == null) {
+                            PriceTrackerAlarmTrigger.ALARM_TIME_FREQUENCY = Integer.parseInt(UtilFunctions.getDataFromSharedPref(ctx, "a_f"));
+                            WatchlistFragment.updateInterval = Integer.parseInt(UtilFunctions.getDataFromSharedPref(ctx,"w_f"));
+                            return;
+                        }
+                        else {
+                            PriceTrackerAlarmTrigger.ALARM_TIME_FREQUENCY = response.optInt("a");
+                            WatchlistFragment.updateInterval = response.optInt("w");
+                        }
+                        h.put("w_f", response.optString("w"));
+                        h.put("a_f", response.optString("a"));
+                        UtilFunctions.addDataToSharedPref(h, ctx);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        SingletonVolleyRequestQueue.getInstance(ctx).addToRequestQueue(jsObjRequest);
     }
 }
 

@@ -20,20 +20,23 @@ import java.util.Set;
 
 
 public class PriceTrackerAlarmTrigger extends BroadcastReceiver {
+    public static int ALARM_TIME_FREQUENCY = 12;
+
     @Override
     public void onReceive (final Context context, Intent intent) {
         scheduleExactAlarm(context, (AlarmManager)context.getSystemService(Context.ALARM_SERVICE));
 
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "PriceTrackerWakelock");
-        wl.acquire();
+        PowerManager.WakeLock wl = null;
+        if (pm != null) {
+            wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "PriceTrackerWakelock");
+        }
+        wl.acquire(ALARM_TIME_FREQUENCY*1000L);
 
         Handler handler = new Handler();
         Runnable periodicUpdate = new Runnable() {
             @Override
             public void run() {
-                // TODO remove log
-                Log.d("alarm trigger handler", "alarm trigger handler************");
                 AppDatabase appDatabase = DatabaseHandler.getInstance(context);
                 List<String> coinList = appDatabase.alertDao().getAllCoinIds();
                 if (coinList == null || coinList.isEmpty()) return;
@@ -49,7 +52,7 @@ public class PriceTrackerAlarmTrigger extends BroadcastReceiver {
     public static void scheduleExactAlarm(Context context, AlarmManager alarms) {
         Intent i=new Intent(context, PriceTrackerAlarmTrigger.class);
         PendingIntent pi= PendingIntent.getBroadcast(context, 0, i, 0);
-        alarms.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+30*1000-SystemClock.elapsedRealtime()%1000, pi);
+        alarms.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+ALARM_TIME_FREQUENCY*1000-SystemClock.elapsedRealtime()%1000, pi);
     }
 
     public static void cancelAlarm(Context context, AlarmManager alarms) {

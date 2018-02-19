@@ -7,10 +7,12 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,13 +25,15 @@ import java.text.ParseException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import tech.smartcrypto.neeraj.coin.Alert;
 import tech.smartcrypto.neeraj.coin.Coin;
 import tech.smartcrypto.neeraj.coin.MainActivity;
 import tech.smartcrypto.neeraj.coin.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by neerajlajpal on 05/02/18.
@@ -94,14 +98,13 @@ public class UtilFunctions {
 
     public static void updateCoinsInAlertsDB(Coin[] coins, Context ctx) {
         if(ctx == null) return;
-        //TODO remove toast
         //*******************
-        StringBuilder coinIdsForToast = new StringBuilder();
-        for(Coin coin : coins) {
-            coinIdsForToast.append("\n");
-            coinIdsForToast.append(coin.getId());
-        }
-        Toast.makeText(ctx, coinIdsForToast,Toast.LENGTH_SHORT).show();
+//        StringBuilder coinIdsForToast = new StringBuilder();
+//        for(Coin coin : coins) {
+//            coinIdsForToast.append("\n");
+//            coinIdsForToast.append(coin.getId());
+//        }
+//        Toast.makeText(ctx, coinIdsForToast,Toast.LENGTH_SHORT).show();
 
         //*******************
         Runnable task = () -> {
@@ -135,16 +138,17 @@ public class UtilFunctions {
         NotificationManager notificationManager = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "my_channel_id_01";
 
-        String title = "";
-        String content = "";
+        String content, title;
         if(toTriggerAlert == 2) {
-            title = alert.getCoinId() + "  above  " + alert.getHighPrice();
+            title = alert.getCoinName();
+            content = "Above "+ alert.getHighPrice() + " at " + alert.getCurrentPrice();
         } else if(toTriggerAlert == 1) {
-            title = alert.getCoinId() + "  below  " + alert.getLowPrice();
+            title = alert.getCoinName();
+            content = "Below "+ alert.getLowPrice() + " at " + alert.getCurrentPrice();
         } else
             return;
 
-        content = "at  " + alert.getCurrentPrice();
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_HIGH);
@@ -164,10 +168,10 @@ public class UtilFunctions {
                 notificationIntent, 0);
         notificationBuilder.setAutoCancel(false)
                 .setDefaults(Notification.DEFAULT_ALL)
-                //.setOngoing(true)
-                //.setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.bch)
-                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(ctx.getResources(),
+                        R.mipmap.ic_launcher))
+                .setPriority(Notification.PRIORITY_HIGH)
                 .setContentTitle(title)
                 .setContentText(content)
                 .setContentInfo("Alert")
@@ -321,6 +325,17 @@ public class UtilFunctions {
             //do nothing
             return null;
         }
+    }
+
+    public static void addDataToSharedPref(Map<String, String> map, Context ctx) {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(ctx).edit();
+        editor.putString("w_f", map.get("w_f"));
+        editor.putString("a_f", map.get("a_f"));
+        editor.apply();
+    }
+
+    public static String getDataFromSharedPref(Context ctx, String key) {
+        return PreferenceManager.getDefaultSharedPreferences(ctx).getString(key, "10");
     }
 
 

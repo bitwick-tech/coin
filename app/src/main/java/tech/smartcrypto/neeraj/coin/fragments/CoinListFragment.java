@@ -36,21 +36,19 @@ public class CoinListFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dialog_list_coin, container, false);
-    }
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        return inflater.inflate(R.layout.fragment_dialog_list_coin, container, false);
+//    }
 
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        //String colors[] = getResources().getStringArray(R.array.all_coins);
         List<String> allCoins = new LinkedList<>(Arrays.asList(getResources().getStringArray(R.array.all_coins)));
         ListAdapter adapter = new CoinItemForAllCoinsAlertAdapter(getContext(), allCoins);
         AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-        alert.setCancelable(true);
         alert.setTitle("Pick a coin");
         alert.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
@@ -62,7 +60,10 @@ public class CoinListFragment extends DialogFragment {
                             CoinListFragment.this.getTargetFragment().onActivityResult(CoinListFragment.this.getTargetRequestCode(), 1, intent);
                         }
                     }
-                });
+        });
+
+        View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_dialog_list_coin, null);
+        alert.setView(view);
 
         return alert.create();
     }

@@ -23,7 +23,7 @@ public abstract class AppDatabase extends RoomDatabase() {
 */
 
 
-@Database(entities = {Coin.class, Alert.class}, version = 10)
+@Database(entities = {Coin.class, Alert.class}, version = 14)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract CoinDao coinDao();
     public abstract AlertDao alertDao();

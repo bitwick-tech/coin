@@ -120,7 +120,7 @@ public class AlertDialogFragment extends DialogFragment {
                         // do your work with response object
 
                         try{
-                            Log.d("callback", result.toString());
+                            //Log.d("callback", result.toString());
                             if(getContext() != null) {
                                 JSONArray coinJsonArray = result.optJSONArray("coinData");
                                 JSONObject coinJson = coinJsonArray.getJSONObject(0);
@@ -170,7 +170,7 @@ public class AlertDialogFragment extends DialogFragment {
     private void handleCurrentPriceTv(Coin coin) {
         TextView tv = myView.findViewById(R.id.fragment_dialog_alert_currentPriceTxt);
         tv.setVisibility(View.VISIBLE);
-        tv.setText("Alert me when\n current price \n " + UtilFunctions.formatFloatTo4Decimals(coin.getCurrentPrice()) + "  " + coin.getCurrency());
+        tv.setText("Alert me when\n current price \n " + UtilFunctions.formatFloatTo4Decimals(coin.getCurrentPrice()) + "  " + coin.getCurrency().toUpperCase());
     }
 
     private void handleSaveBtn() {

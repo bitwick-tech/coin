@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
@@ -36,7 +37,7 @@ public class AlertService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        Log.d(LOG_TAG, "foreground service started ********");
+        //Log.d(LOG_TAG, "foreground service started ********");
         myIntent = intent;
         isServiceRunning = true;
         scheduleExactAlarm(this, (AlarmManager)this.getSystemService(Context.ALARM_SERVICE));
@@ -82,10 +83,12 @@ public class AlertService extends Service {
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setOngoing(true)
                 //.setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.bch)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(),
+                        R.mipmap.ic_launcher))
                 .setPriority(Notification.PRIORITY_MAX)
-                .setContentTitle("Default notification")
-                .setContentText("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+                .setContentTitle(getResources().getString(R.string.app_name))
+                .setContentText("Real-time alerts service")
                 .setContentInfo("Info")
                 .setContentIntent(pendingIntent);
 

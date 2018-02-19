@@ -1,36 +1,37 @@
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swiperefresh"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="tech.smartcrypto.neeraj.coin.fragments.WatchlistFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="tech.smartcrypto.neeraj.coin.fragments.WatchlistFragment">
+        android:divider="@android:color/transparent"
+        android:paddingTop="8dp"
+        android:clipToPadding="false"
+        android:layout_margin="4dp"
+        android:dividerHeight="2dp">
 
         <ListView
             android:id="@+id/coinList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@android:color/transparent"
-            android:paddingTop="8dp"
-            android:clipToPadding="false"
-            android:layout_margin="4dp"
-            android:dividerHeight="2dp"
             />
 
+    </android.support.v4.widget.SwipeRefreshLayout>
 
+    <Button
+        android:id="@+id/button_add_coin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-        <Button
-            android:id="@+id/button_add_coin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        android:text="@string/buttonTxt_add_coin"
+        android:layout_alignParentBottom="true" />
 
-            android:text="@string/buttonTxt_add_coin"
-            android:layout_alignParentBottom="true" />
+</RelativeLayout>
 
-    </RelativeLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
     <!-- android:layout_alignBottom="@+id/coinList" -->

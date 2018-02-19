@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ import static utils.UtilFunctions.addCoinToDb;
 
 
 public class WatchlistFragment extends Fragment {
-
+    public static  int updateInterval = 20;
     private static final int REQUEST_CODE_FOR_LIST_COIN_FRAGMENT = 1;
     SwipeRefreshLayout mSwipeRefreshLayout;
     final Handler handler = new Handler();
@@ -47,13 +48,15 @@ public class WatchlistFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_watchlist, container, false);
 
+
+
         mSwipeRefreshLayout = view.findViewById(R.id.swiperefresh);
         mSwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
                         UtilFunctions.updateWatchlistCoinData(getContext());
-                        mSwipeRefreshLayout.setRefreshing(false);
+                        //mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }
         );
@@ -61,21 +64,22 @@ public class WatchlistFragment extends Fragment {
         Runnable refresh = new Runnable() {
             @Override
             public void run() {
-                UtilFunctions.updateWatchlistCoinData(getContext());
-                mSwipeRefreshLayout.setRefreshing(true);
+//                Log.d("external run", "external run");
                 mSwipeRefreshLayout.post(new Runnable() {
                     @Override
                     public void run() {
-                        handler.postDelayed(this, 60 * 1000);
+//                        Toast.makeText(getActivity(),"refreshing", Toast.LENGTH_LONG).show();
+//                        Log.d("internal run", "internal run");
+                        mSwipeRefreshLayout.setRefreshing(true);
+                        UtilFunctions.updateWatchlistCoinData(getContext());
                         mSwipeRefreshLayout.setRefreshing(false);
+                        handler.postDelayed(this, updateInterval * 1000);
                     }
                 });
             }
         };
+        handler.postDelayed(refresh, 5 * 1000);
 
-        handler.postDelayed(refresh, 60 * 1000);
-
-        UtilFunctions.updateWatchlistCoinData(getContext());
         // Followed coins list
         LiveData<List<Coin>> coinList = DatabaseHandler.getInstance(getActivity()).coinDao().getAll();
         ListView coinListView = view.findViewById(R.id.coinList);
@@ -105,9 +109,7 @@ public class WatchlistFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_FOR_LIST_COIN_FRAGMENT) {
             super.onActivityResult(requestCode, resultCode, data);
-            //do what ever you want here, and get the result from intent like below
             String myData = data.getStringExtra("coinId");
-            // TODO get data from server and store updated values to DB
             if(myData != null && !myData.isEmpty()) {
                 Coin coin = new Coin();
                 coin.setId(myData);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Coin</string>
+    <string name="app_name">Crypto Compare</string>
     <string name="edit_message">Enter a message</string>
     <string name="one">One</string>
     <string name="goes_above">goes above</string>
@@ -25,38 +25,11 @@
     <string name="one_time">One-Time</string>
     <string name="continuously">Continuously</string>
 
-    <!-- Cryptocurrencies symbols and names mapping -->
-    <string name="btc">Bitcoin</string>
-    <string name="bch">Bitcoin Cash/BCC</string>
-    <string name="xrp">Ripple</string>
-    <string name="eth">Ether</string>
-    <string name="ltc">Litecoin</string>
-    <string name="omg">Omisego</string>
-    <string name="gnt">Golem</string>
-    <string name="miota">IOTA</string>
-    <string name="btc__zebpay">Bitcoin  ZEBPAY</string>
-    <string name="btc__unocoin">Bitcoin  UNOCOIN</string>
-    <string name="btc__koinex">Bitcoin  KOINEX</string>
-    <string name="xrp__koinex">Ripple  KOINEX</string>
-    <string name="bch__koinex">Bitcoin Cash/BCC  KOINEX</string>
-    <string name="eth__koinex">Ether  KOINEX</string>
-    <string name="ltc__koinex">Litecoin  KOINEX</string>
-    <string name="omg__koinex">Omisego  KOINEX</string>
-    <string name="miota__koinex">IOTA  KOINEX</string>
 
-    <string-array name="coins">
-        <item>btc__zebpay</item>
-        <item>btc__unocoin</item>
-        <item>btc__koinex</item>
-        <item>xrp__koinex</item>
-        <item>bch__koinex</item>
-        <item>eth__koinex</item>
-        <item>ltc__koinex</item>
-        <item>omg__koinex</item>
-        <item>miota__koinex</item>
-    </string-array>
 
     <string name="coinApiUrl">http://www.smartcrypto.tech/coins/</string>
+
+    <string name="frequencyApiUrl">http://www.smartcrypto.tech/frequency/</string>
 
 
     <string name="delete">delete</string>
