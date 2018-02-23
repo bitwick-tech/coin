@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="all_coins">
+        <item>btc__zebpay</item>
+        <item>bch__zebpay</item>
+        <item>ltc__zebpay</item>
+        <item>xrp__zebpay</item>
+        <item>btc__unocoin</item>
+        <item>btc__koinex</item>
+        <item>xrp__koinex</item>
+        <item>bch__koinex</item>
+        <item>eth__koinex</item>
+        <item>ltc__koinex</item>
+        <item>omg__koinex</item>
+        <item>miota__koinex</item>
+        <item>gnt__koinex</item>
+    </string-array>
+</resources>

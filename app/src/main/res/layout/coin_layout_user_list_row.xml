@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:background="@layout/round_corner_rectangle_list_item"
+    android:layout_margin="8dp"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/coin_layout_user_list_coinIconIv"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/black" />
+
+    <TextView
+        android:id="@+id/coin_layout_user_list_coinIdTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/coin_layout_user_list_coinIconIv"
+        android:layout_alignTop="@+id/coin_layout_user_list_coinIconIv"
+        />
+
+    <TextView
+        android:id="@+id/coin_layout_user_list_coinNameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/coin_layout_user_list_coinIconIv"
+        android:layout_below="@+id/coin_layout_user_list_coinIdTv"
+        android:layout_toStartOf="@+id/coin_layout_user_list_cpChangeTv"
+        />
+
+
+
+    <TextView
+        android:id="@+id/coin_layout_user_list_cpTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"/>
+
+
+
+    <TextView
+        android:id="@+id/coin_layout_user_list_cpChangeTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/coin_layout_user_list_cpTv"
+        android:layout_toStartOf="@+id/coin_layout_user_list_upOrDownIv"
+        android:visibility="invisible"
+        />
+
+    <ImageView
+        android:id="@+id/coin_layout_user_list_upOrDownIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/coin_layout_user_list_cpTv"
+        android:visibility="invisible"/>
+
+
+</RelativeLayout>

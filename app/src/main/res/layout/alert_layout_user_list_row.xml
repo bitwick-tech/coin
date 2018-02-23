@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:visibility="visible"
+    android:background="@layout/round_corner_rectangle_list_item"
+    android:layout_margin="8dp"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/alert_layout_user_list_alertId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/alert_layout_user_list_coinIV"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/black" />
+
+    <TextView
+        android:id="@+id/alert_layout_user_list_coinIdTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/alert_layout_user_list_coinIV"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/alert_layout_user_list_coinIV" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/alert_layout_user_list_currencyTv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_toEndOf="@+id/alert_layout_user_list_coinIdTv" />-->
+
+    <ImageView
+        android:id="@+id/alert_layout_user_list_upIv"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/alert_layout_user_list_coinIdTv"
+        android:layout_toEndOf="@+id/alert_layout_user_list_coinIV"
+        android:src="@drawable/ic_arrow_drop_up_black_24dp"
+        android:tint="@color/white" />
+
+    <ImageView
+        android:id="@+id/alert_layout_user_list_downIv"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/alert_layout_user_list_coinIdTv"
+        android:layout_toEndOf="@+id/alert_layout_user_list_upIv"
+        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+        android:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/alert_layout_user_list_cpTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/alert_layout_user_list_coinIV"
+        android:layout_toEndOf="@+id/alert_layout_user_list_coinIdTv"
+        android:layout_toStartOf="@+id/alert_layout_user_list_upWithPriceIv" />
+
+    <ImageView
+        android:id="@+id/alert_layout_user_list_upWithPriceIv"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignTop="@+id/alert_layout_user_list_hpTv"
+        android:layout_toStartOf="@+id/alert_layout_user_list_hpTv"
+        android:src="@drawable/ic_arrow_drop_up_black_24dp"
+        android:tint="@color/green"/>
+
+    <ImageView
+        android:id="@+id/alert_layout_user_list_downWithPriceIv"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignTop="@+id/alert_layout_user_list_lpTv"
+        android:layout_toStartOf="@+id/alert_layout_user_list_lpTv"
+        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+        android:tint="@color/red" />
+
+    <TextView
+        android:id="@+id/alert_layout_user_list_hpTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/alert_layout_user_list_lpTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/alert_layout_user_list_hpTv" />
+
+</RelativeLayout>

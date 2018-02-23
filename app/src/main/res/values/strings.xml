@@ -1,38 +1,39 @@
 <resources>
-    <string name="app_name">Coin</string>
+    <string name="app_name">Crypto Compare</string>
     <string name="edit_message">Enter a message</string>
     <string name="one">One</string>
+    <string name="goes_above">goes above</string>
+    <string name="goes_below">or goes below</string>
+    <string name="or">or</string>
+    <string name="alert_me">alert me</string>
+    <string name="save">Save</string>
 
 
     <string name="fragment_watchlist">Watchlist</string>
     <string name="fragment_alerts">Alerts</string>
     <string name="fragment_news">News</string>
 
-    <string name="button_add_coin">+ Add Coin</string>
-    <string name="button_send">Send</string>
+    <string name="shared_preference_followed_coins_file">tech.smartcrypto.followed_coins</string>
+    <string name="shared_preference_followed_coins_key">fc</string>
 
-    <!-- Cryptocurrencies symbols and names mapping -->
-    <string name="BTC">Bitcoin</string>
-    <string name="BCH">Bitcoin Cash/BCC</string>
-    <string name="XRP">Ripple</string>
-    <string name="ETH">Ether</string>
-    <string name="LTC">Litecoin</string>
-    <string name="OMG">Omisego</string>
-    <string name="GNT">Golem</string>
-    <string name="IOTA">MIOTA</string>
+    <string name="buttonTxt_add_coin">+ Add Coin</string>
+    <string name="buttonTxt_send">Send</string>
+    <string name="buttonTxt_add_alert">+ Add Alert</string>
+    <string name="buttonTxt_save">Save</string>
+    <string name="buttonTxt_click_to_select_coin">Click here to select a coin</string>
 
-    <string-array name="coins">
-        <item>BTC--ZEBPAY</item>
-        <item>BTC--KOINEX</item>
-        <item>BTC--UNOCOIN</item>
-        <item>BCH--KOINEX</item>
-        <item>XRP--KOINEX</item>
-        <item>ETH--KOINEX</item>
-        <item>LTC--KOINEX</item>
-        <item>OMG--KOINEX</item>
-        <item>GNT--KOINEX</item>
-        <item>IOTA--KOINEX</item>
-    </string-array>
+    <string name="one_time">One-Time</string>
+    <string name="continuously">Continuously</string>
+
+
+
+    <string name="coinApiUrl">http://www.smartcrypto.tech/coins/</string>
+
+    <string name="frequencyApiUrl">http://www.smartcrypto.tech/frequency/</string>
+
+
+    <string name="delete">delete</string>
+    <string name="coin">Coin</string>
 
 
 </resources>

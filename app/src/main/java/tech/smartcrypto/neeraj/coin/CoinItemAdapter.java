@@ -1,6 +1,8 @@
 package tech.smartcrypto.neeraj.coin;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import utils.UtilFunctions;
 
 /**
  * Created by neeraj on 28/1/18.
@@ -19,7 +23,7 @@ public class CoinItemAdapter extends ArrayAdapter<Coin> {
     private Context ctx;
     private List<Coin> coinList;
     public CoinItemAdapter(Context context, List<Coin> coinList) {
-        super(context, R.layout.coin_layout);
+        super(context, R.layout.coin_layout_user_list_row, coinList);
         this.ctx = context;
         this.coinList = coinList;
     }
@@ -27,43 +31,71 @@ public class CoinItemAdapter extends ArrayAdapter<Coin> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
-        coinHolder h = null;
+        CoinHolder h = null;
         if (v == null) {
             // Inflate row layout
             LayoutInflater inf = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inf.inflate(R.layout.coin_layout, parent, false);
+            v = inf.inflate(R.layout.coin_layout_user_list_row, parent, false);
             // Look for Views in the layout
-            ImageView iv = (ImageView) v.findViewById(R.id.tagView);
-            TextView nameTv = (TextView) v.findViewById(R.id.idView);
-            TextView descrView = (TextView) v.findViewById(R.id.descriptionView);
-            //TextView dateView = (TextView) v.findViewById(R.id.dateView);
-            h = new coinHolder();
-            h.tagView = iv;
-            h.idView = nameTv;
-            h.descriptionView = descrView;
-            //h.dateView = dateView;
+            ImageView coinImageIv = v.findViewById(R.id.coin_layout_user_list_coinIconIv);
+            TextView coinNameTv = v.findViewById(R.id.coin_layout_user_list_coinNameTv);
+            TextView coinIdTv = v.findViewById(R.id.coin_layout_user_list_coinIdTv);
+            TextView coinPriceTv = v.findViewById(R.id.coin_layout_user_list_cpTv);
+            TextView coinPriceChangeTv = v.findViewById(R.id.coin_layout_user_list_cpChangeTv);
+            ImageView upOrDownIv = v.findViewById(R.id.coin_layout_user_list_upOrDownIv);
+
+            h = new CoinHolder();
+            h.coinImageIv = coinImageIv;
+            h.coinNameTv = coinNameTv;
+            h.coinIdTv = coinIdTv;
+            h.coinPriceTv = coinPriceTv;
+            h.coinPriceChangeTv = coinPriceChangeTv;
+            h.upOrDownIv = upOrDownIv;
+
             v.setTag(h);
         }
-        else
-            h = (coinHolder) v.getTag();
+        else h = (CoinHolder) v.getTag();
 
-        h.idView.setText(coinList.get(position).getId());
-        h.descriptionView.setText(coinList.get(position).getDescription());
-        h.tagView.setBackgroundResource(coinList.get(position).getTag().getTagColor());
-        //h.dateView.setText(sdf.format(itemList.get(position).getDate()));
+        Coin coin = coinList.get(position);
+        int imgId = UtilFunctions.getResourseId(getContext(), coin.getId(), "drawable", getContext().getPackageName());
+        if(imgId >= 0) h.coinImageIv.setImageResource(imgId);
+        if(coin.getName() != null) {
+            int lastIndexOfSpace = coin.getName().lastIndexOf( " ");
+            if(lastIndexOfSpace == -1)  lastIndexOfSpace = coin.getName().length();
+            h.coinNameTv.setText(coin.getName().substring(0, lastIndexOfSpace));
+        }
+        String[] idArr = coin.getId().split("__");
+        h.coinIdTv.setText(idArr[0].toUpperCase() + " " + idArr[1]);
+        h.coinPriceTv.setText("INR " + UtilFunctions.formatFloatTo4Decimals(coin.getCurrentPrice()));
+        if(coin.getOpenPrice() > 0.0f) {
+            float percentageChange = ((coin.getCurrentPrice() - coin.getOpenPrice()) * 100) / coin.getOpenPrice();
+            //percentageChange = 2.2f;
+            h.coinPriceChangeTv.setVisibility(View.VISIBLE);
+            h.coinPriceChangeTv.setText(UtilFunctions.formatFloatTo4Decimals(percentageChange) + " %");
+            if(percentageChange != 0.0f) h.upOrDownIv.setVisibility(View.VISIBLE);
+            if(percentageChange > 0.0f) {
+                h.coinPriceChangeTv.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
+                h.upOrDownIv.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_arrow_drop_up_black_24dp));
+                DrawableCompat.setTint(h.upOrDownIv.getDrawable(), ContextCompat.getColor(getContext(), R.color.green));
+            } else if(percentageChange < 0.0f) {
+                h.coinPriceChangeTv.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+                h.upOrDownIv.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_arrow_drop_down_black_24dp));
+                DrawableCompat.setTint(h.upOrDownIv.getDrawable(), ContextCompat.getColor(getContext(), R.color.red));
+            }
+        }
 
         return v;
     }
 
     // ViewHolder pattern
-    static class coinHolder {
-        ImageView tagView;
-        TextView idView;
-        TextView descriptionView;
-        //TextView dateView;
+    static class CoinHolder {
+        ImageView coinImageIv;
+        TextView coinNameTv;
+        TextView coinIdTv;
+        TextView coinPriceTv;
+        TextView coinPriceChangeTv;
+        ImageView upOrDownIv;
     }
-
-
 
 
 

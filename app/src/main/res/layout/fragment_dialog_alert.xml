@@ -1,0 +1,142 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tech.smartcrypto.neeraj.coin.fragments.AlertDialogFragment"
+    android:padding="8dp">
+
+
+    <TextView
+        android:id="@+id/fragment_dialog_alert_idTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="@string/coin" />
+
+    <TextView
+        android:id="@+id/fragment_dialog_alert_txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/coin" />
+    <!-- android:layout_alignLeft= -->
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:drawableStart="@drawable/btc"
+        android:layout_below="@+id/fragment_dialog_alert_txtTitle"
+        android:id="@+id/fragment_dialog_alert_coinBtn"
+        android:padding="12dp"
+        android:drawablePadding="12dp"
+        android:text="@string/buttonTxt_click_to_select_coin"/>
+        <!-- android:layout_below="@+id/fragment_dailog_alert_txtTitle" -->
+
+
+    <TextView
+        android:id="@+id/fragment_dialog_alert_currentPriceTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_dialog_alert_coinBtn"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:textSize="16dp"
+        android:layout_marginStart="10dp" />
+
+    <TextView
+        android:id="@+id/fragment_dialog_alert_goesAboveTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:layout_below="@id/fragment_dialog_alert_currentPriceTxt"
+        android:layout_marginTop="10dp"
+        android:text="@string/goes_above"/>
+
+    <EditText
+        android:id="@+id/fragment_dialog_alert_abovePriceEdtTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:inputType="number"
+        android:digits="0123456789."
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:layout_below="@id/fragment_dialog_alert_goesAboveTxt" />
+
+    <TextView
+        android:id="@+id/fragment_dialog_alert_goesBelowTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:layout_below="@id/fragment_dialog_alert_abovePriceEdtTxt"
+        android:layout_marginTop="10dp"
+        android:text="@string/goes_below" />
+
+    <EditText
+        android:id="@+id/fragment_dialog_alert_goesBelowEdtTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:inputType="number"
+        android:digits="0123456789."
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:layout_below="@id/fragment_dialog_alert_goesBelowTxt"/>
+
+    <TextView
+        android:id="@+id/fragment_dialog_alert_alertMeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:text="@string/alert_me"
+        android:layout_below="@id/fragment_dialog_alert_goesBelowEdtTxt"
+        android:layout_marginTop="10dp"/>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_dialog_alert_oneTimeRadioGrp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_below="@+id/fragment_dialog_alert_alertMeTxt"
+        android:orientation="horizontal"
+        android:checkedButton="@id/fragment_dialog_alert_oneTimeRadioBtn">
+        <RadioButton android:id="@+id/fragment_dialog_alert_oneTimeRadioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/one_time"/>
+
+        <RadioButton
+            android:id="@+id/fragment_dialog_alert_contRadioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/continuously" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/fragment_dialog_alert_delAlertBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:layout_marginRight="8dp"
+        android:text="@string/delete"
+        android:background="@color/red"/>
+
+    <Button
+        android:id="@+id/fragment_dialog_alert_saveAlertBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/fragment_dialog_alert_delAlertBtn"
+        android:layout_alignTop="@+id/fragment_dialog_alert_delAlertBtn"
+        android:layout_alignBottom="@+id/fragment_dialog_alert_delAlertBtn"
+        android:visibility="invisible"
+        android:text="@string/save"
+        android:background="@color/blue"/>
+
+</RelativeLayout>
