@@ -92,13 +92,10 @@ public class AlertService extends Service {
                 .setContentInfo("Info")
                 .setContentIntent(pendingIntent);
 
-        startForeground(1337, notificationBuilder.build());
+        startForeground(NOTIFICATION_ID, notificationBuilder.build());
 
         //notificationManager.notify(/*notification id*/1, notificationBuilder.build());
     }
 
-    private void showAlertNotification(Alert alert) {
-
-    }
 
 }

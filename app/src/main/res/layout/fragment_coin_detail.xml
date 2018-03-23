@@ -1,0 +1,89 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tech.smartcrypto.neeraj.coin.fragments.CoinDetailFragment"
+    android:background="@color/windowBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/fragment_coin_detail_parentLl"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/fragment_coin_detail_backButtonIv"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:id="@+id/fragment_coin_detail_coinImageTv"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/alert_me"
+            android:id="@+id/fragment_coin_detail_coinNameTv"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:paddingTop="8dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            />
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="#191919"
+            android:layout_marginStart="480dp"
+            >
+
+            <utils.MultiSpinner
+                android:id="@+id/fragment_coin_detail_exSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginStart="16dp"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/fragment_coin_detail_selectExchangeIv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:src="@drawable/select_exchanges"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="128dp"
+        />
+
+    <ListView
+        android:id="@+id/fragment_coin_detail_exchangeList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_coin_detail_parentLl"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginHorizontal="8dp"
+        />
+
+
+</RelativeLayout>

@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@layout/round_corner_rectangle_list_item"
+    android:layout_margin="8dp"
+    android:padding="8dp">
+
+
+
+        <ImageView
+            android:id="@+id/exchange_layout_coin_detail_exIconIv"
+            android:layout_width="60dp"
+            android:layout_margin="8dp"
+            android:layout_height="60dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/exchange_layout_coin_detail_exNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:textSize="24sp"
+            android:layout_toEndOf="@+id/exchange_layout_coin_detail_exIconIv"
+            android:layout_alignTop="@+id/exchange_layout_coin_detail_exIconIv"
+            />
+
+        <TextView
+            android:id="@+id/exchange_layout_coin_detail_cpTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            android:layout_alignParentEnd="true"
+            />
+
+        <ImageView
+            android:id="@+id/exchange_layout_coin_detail_upOrDownIv"
+            android:layout_height="32dp"
+            android:layout_width="32dp"
+            android:background="@color/black"
+            android:layout_toStartOf="@+id/exchange_layout_coin_detail_percentageTv"
+            android:layout_alignTop="@+id/exchange_layout_coin_detail_percentageTv"
+            android:layout_alignBottom="@+id/exchange_layout_coin_detail_percentageTv"
+            />
+
+        <TextView
+            android:id="@+id/exchange_layout_coin_detail_percentageTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/exchange_layout_coin_detail_cpTv"
+            />
+
+</RelativeLayout>
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:id="@+id/exchange_layout_coin_detail_staticInfoLl">-->
+
+<!--<Spinner-->
+<!--android:id="@+id/exchange_layout_coin_detail_currSp"-->
+<!--android:layout_width="fill_parent"-->
+<!--android:layout_height="wrap_content"-->
+    <!--/>-->
+
+    <!--TextView e1Tv;-->
+    <!--TextView e1CpTv;-->
+    <!--ImageView e1UpOrDownIv;-->
+    <!--TextView e1PercentageTv;-->
+
+    <!--TextView e2Tv;-->
+    <!--TextView e2CpTv;-->
+    <!--ImageView e2UpOrDownIv;-->
+    <!--TextView e2PercentageTv;-->
+
+    <!--TextView e3Tv;-->
+    <!--TextView e3CpTv;-->
+    <!--ImageView e3UpOrDownIv;-->
+    <!--TextView e3PercentageTv;-->
+    <!--<TextView-->
+    <!--android:id="@+id/coin_layout_user_list_cpTv"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentEnd="true"/>-->
+
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/coin_layout_user_list_cpChangeTv"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/coin_layout_user_list_cpTv"-->
+    <!--android:layout_toStartOf="@+id/coin_layout_user_list_upOrDownIv"-->
+    <!--android:visibility="invisible"-->
+    <!--/>-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/coin_layout_user_list_upOrDownIv"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginEnd="4dp"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_below="@+id/coin_layout_user_list_cpTv"-->
+    <!--android:visibility="invisible"/>-->
+
+    <!--<ListView-->
+    <!--android:id="@+id/coin_layout_user_list_exList"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_toEndOf="@+id/coin_layout_user_list_coinIdTv"-->
+    <!--android:layout_margin="8dp"-->
+    <!--android:focusable="false"-->
+    <!--android:focusableInTouchMode="false"-->
+    <!--/>-->

@@ -7,12 +7,24 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.internal.Util;
 import tech.smartcrypto.neeraj.coin.fragments.WatchlistFragment;
 import utils.PriceTrackerAlarmTrigger;
 import utils.ServerInteractionHandler;
 import utils.UtilFunctions;
+import utils.VolleyCallback;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "tech.smartcrypto.neeraj.coin.MESSAGE";
@@ -20,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //TODO check version and update if newer version is present
+        //get coin static data
 
         // Find the view pager that will allow the user to swipe between fragments
         ViewPager viewPager = findViewById(R.id.viewpager);
@@ -42,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }
+
+        String userCurrency = UtilFunctions.getDataFromSharedPref(this, "defaultCurrency");
+        if(userCurrency == null || userCurrency.isEmpty()) {
+            Map<String, String> currency = new HashMap<>(1);
+            currency.put("defaultCurrency", "inr");
+            UtilFunctions.addDataToSharedPref(currency, this);
+        }
+
     }
 
     @Override
@@ -52,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             startService(service);
         }
 
-        //get and set alert and watchlist update frequency
+        //get and set alert and watchlist update frequency and static data version handling
         ServerInteractionHandler.getFrequencyDataFromServer(getApplicationContext());
     }
 

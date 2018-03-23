@@ -34,7 +34,7 @@ public class AlertsFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the progress_animation for this fragment
         View view = inflater.inflate(R.layout.fragment_alerts, container, false);
 
         // Alerts list

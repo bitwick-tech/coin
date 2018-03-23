@@ -10,6 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.common.base.Joiner;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -26,65 +27,13 @@ import tech.smartcrypto.neeraj.coin.fragments.WatchlistFragment;
 
 public class ServerInteractionHandler {
     public static final String url = "http://www.smartcrypto.tech/coins/";
-    public interface VolleyCallback {
-        void onSuccessResponse(JSONObject result);
-    }
-
-    // ctx must be application context
-    public static void getCoinsDataFromServer(Set<Coin> coinSet, Context ctx) {
-        // Get a RequestQueue
-        RequestQueue queue = SingletonVolleyRequestQueue.getInstance(ctx).
-                getRequestQueue();
-
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        UtilFunctions.saveCoinsToWatchlistDB(UtilFunctions.convertJSONObjectToCoinsArray(response), ctx);
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-
-        // Access the RequestQueue through your singleton class.
-        SingletonVolleyRequestQueue.getInstance(ctx).addToRequestQueue(jsObjRequest);
-    }
-
-    public static void getCoinsDataFromServerForAlertDB(Set<String> coinIdSet, Context ctx) {
-        // Get a RequestQueue
-        RequestQueue queue = SingletonVolleyRequestQueue.getInstance(ctx).
-                getRequestQueue();
-        String queryString = "?q=" + Joiner.on(",").join(coinIdSet);
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url + queryString, null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        UtilFunctions.updateCoinsInAlertsDB(UtilFunctions.convertJSONObjectToCoinsArray(response), ctx);
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-
-        // Access the RequestQueue through your singleton class.
-        SingletonVolleyRequestQueue.getInstance(ctx).addToRequestQueue(jsObjRequest);
+    public static final String prefixUrl = "http://www.smartcrypto.tech";
 
 
-    }
+    public static void getDataFromServer(String uri, Context ctx, final VolleyCallback callback) {
+        RequestQueue queue = SingletonVolleyRequestQueue.getInstance(ctx).getRequestQueue();
 
-
-
-    public static void getResponseFromServer(int method, String url, JSONObject jsonValue, final VolleyCallback callback, Context mCtx) {
-        RequestQueue queue = SingletonVolleyRequestQueue.getInstance(mCtx).getRequestQueue();
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, jsonValue, new Response.Listener < JSONObject > () {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, uri, null, new Response.Listener < JSONObject > () {
 
             @Override
             public void onResponse(JSONObject Response) {
@@ -96,18 +45,89 @@ public class ServerInteractionHandler {
                 //e.printStackTrace();
                 //Toast.makeText(mCtx, e + "error", Toast.LENGTH_LONG).show();
             }
-        })
-        {
-            // set headers
-            @Override
-            public Map< String, String > getHeaders() throws AuthFailureError {
-                Map < String, String > params = new HashMap<>();
-                //params.put("Authorization: Basic", TOKEN);
-                return params;
-            }
-        };
-        SingletonVolleyRequestQueue.getInstance(mCtx).addToRequestQueue(jsonObjectRequest);
+        });
+        SingletonVolleyRequestQueue.getInstance(ctx).addToRequestQueue(jsonObjectRequest);
     }
+
+
+    // ctx must be application context
+//    public static void getCoinsDataFromServer(Set<Coin> coinSet, Context ctx) {
+//        // Get a RequestQueue
+//        RequestQueue queue = SingletonVolleyRequestQueue.getInstance(ctx).
+//                getRequestQueue();
+//
+//        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+//                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        UtilFunctions.saveCoinsToWatchlistDB(UtilFunctions.convertJSONObjectToCoinsArray(response), ctx);
+//                    }
+//                }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        // TODO Auto-generated method stub
+//
+//                    }
+//                });
+//
+//        // Access the RequestQueue through your singleton class.
+//        SingletonVolleyRequestQueue.getInstance(ctx).addToRequestQueue(jsObjRequest);
+//    }
+
+//    public static void getCoinsDataFromServerForAlertDB(Set<String> coinIdSet, Context ctx) {
+//        // Get a RequestQueue
+//        RequestQueue queue = SingletonVolleyRequestQueue.getInstance(ctx).
+//                getRequestQueue();
+//        String queryString = "?q=" + Joiner.on(",").join(coinIdSet);
+//        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+//                (Request.Method.GET, url + queryString, null, new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        UtilFunctions.updateCoinsInAlertsDB(UtilFunctions.convertJSONObjectToCoinsArray(response), ctx);
+//                    }
+//                }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        // TODO Auto-generated method stub
+//
+//                    }
+//                });
+//
+//        // Access the RequestQueue through your singleton class.
+//        SingletonVolleyRequestQueue.getInstance(ctx).addToRequestQueue(jsObjRequest);
+//
+//
+//    }
+
+
+
+//    public static void getResponseFromServer(int method, String url, JSONObject jsonValue, final VolleyCallback callback, Context mCtx) {
+//        RequestQueue queue = SingletonVolleyRequestQueue.getInstance(mCtx).getRequestQueue();
+//
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, jsonValue, new Response.Listener < JSONObject > () {
+//
+//            @Override
+//            public void onResponse(JSONObject Response) {
+//                callback.onSuccessResponse(Response);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError e) {
+//                //e.printStackTrace();
+//                //Toast.makeText(mCtx, e + "error", Toast.LENGTH_LONG).show();
+//            }
+//        })
+//        {
+//            // set headers
+//            @Override
+//            public Map< String, String > getHeaders() throws AuthFailureError {
+//                Map < String, String > params = new HashMap<>();
+//                //params.put("Authorization: Basic", TOKEN);
+//                return params;
+//            }
+//        };
+//        SingletonVolleyRequestQueue.getInstance(mCtx).addToRequestQueue(jsonObjectRequest);
+//    }
 
     public static void getFrequencyDataFromServer(Context ctx) {
         // Get a RequestQueue
@@ -118,7 +138,7 @@ public class ServerInteractionHandler {
                 (Request.Method.GET, ctx.getResources().getString(R.string.frequencyApiUrl), null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Map<String,String> h = new HashMap<>(2);
+                        Map<String,String> h = new HashMap<>(3);
                         if(response.optString("a") == null) {
                             PriceTrackerAlarmTrigger.ALARM_TIME_FREQUENCY = Integer.parseInt(UtilFunctions.getDataFromSharedPref(ctx, "a_f"));
                             WatchlistFragment.updateInterval = Integer.parseInt(UtilFunctions.getDataFromSharedPref(ctx,"w_f"));
@@ -130,6 +150,15 @@ public class ServerInteractionHandler {
                         }
                         h.put("w_f", response.optString("w"));
                         h.put("a_f", response.optString("a"));
+                        h.put("st_d_v", response.optString("st_d_v"));
+
+
+                        String staticDataVersionOld = UtilFunctions.getDataFromSharedPref(ctx, "st_d_v");
+                        String staticDataVersionNew = response.optString("st_d_v");
+                        if(staticDataVersionOld == null || staticDataVersionOld.isEmpty() || !staticDataVersionNew.equalsIgnoreCase(staticDataVersionOld))
+                            checkGetAndFillStaticCoinData(ctx);
+
+
                         UtilFunctions.addDataToSharedPref(h, ctx);
                     }
                 }, new Response.ErrorListener() {
@@ -142,6 +171,27 @@ public class ServerInteractionHandler {
 
         // Access the RequestQueue through your singleton class.
         SingletonVolleyRequestQueue.getInstance(ctx).addToRequestQueue(jsObjRequest);
+    }
+
+    private static void checkGetAndFillStaticCoinData(Context ctx) {
+        String url = "http://www.smartcrypto.tech/coinsstaticdata/";
+        ServerInteractionHandler.getDataFromServer(url, ctx.getApplicationContext(),
+                new VolleyCallback() {
+                    @Override
+                    public void onSuccessResponse(JSONObject result) {
+                        if(this != null) {
+                            try {
+                                UtilFunctions.addCoinsStaticDataToDB(result, ctx.getApplicationContext());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onErrorResponse(VolleyError result) {
+                        //on error response
+                    }
+                });
     }
 }
 

@@ -19,13 +19,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 import tech.smartcrypto.neeraj.coin.Coin;
+import tech.smartcrypto.neeraj.coin.CoinDao;
 import tech.smartcrypto.neeraj.coin.CoinItemForAllCoinsAlertAdapter;
+import tech.smartcrypto.neeraj.coin.CoinStaticData;
+import tech.smartcrypto.neeraj.coin.CoinStaticDataDao;
 import tech.smartcrypto.neeraj.coin.R;
+import utils.DatabaseHandler;
+import utils.UtilFunctions;
 
 public class CoinListFragment extends DialogFragment {
 
-    //String colors[] = new String[] {"BTC--ZEBPAY", "BTC--UNOCOIN", "BTC--KOINEX",
-      //      "XRP--KOINEX", "BCH--KOINEX", "ETH--KOINEX", "LTC--KOINEX", "OMG--KOINEX", "MIOTA--KOINEX"};
     public CoinListFragment() {
         // Required empty public constructor
     }
@@ -36,18 +39,18 @@ public class CoinListFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_dialog_list_coin, container, false);
-//    }
-
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        List<String> allCoins = new LinkedList<>(Arrays.asList(getResources().getStringArray(R.array.all_coins)));
-        ListAdapter adapter = new CoinItemForAllCoinsAlertAdapter(getContext(), allCoins);
+        List<CoinStaticDataDao.CoinIdAndName> coins;
+        if(CoinListFragment.this.getTargetRequestCode() == WatchlistFragment.REQUEST_CODE_FOR_LIST_COIN_FRAGMENT) {
+            coins = UtilFunctions.removeAlreadyAddedCoins(getActivity());
+        }
+        else {
+            coins = DatabaseHandler.getInstance(getActivity()).coinStaticDataDao().getAllCoinIdAndNameList();
+        }
+
+        ListAdapter adapter = new CoinItemForAllCoinsAlertAdapter(getContext(), coins);
         AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
         alert.setTitle("Pick a coin");
         alert.setAdapter(adapter, new DialogInterface.OnClickListener() {
@@ -56,7 +59,7 @@ public class CoinListFragment extends DialogFragment {
                         // the user clicked on colors[which]
                         if (which >= 0) {
                             Intent intent = new Intent();
-                            intent.putExtra("coinId", allCoins.get(which));// [which]);
+                            intent.putExtra("coinIdName", coins.get(which).coinId+"__"+coins.get(which).coinName);
                             CoinListFragment.this.getTargetFragment().onActivityResult(CoinListFragment.this.getTargetRequestCode(), 1, intent);
                         }
                     }

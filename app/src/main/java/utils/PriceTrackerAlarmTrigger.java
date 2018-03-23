@@ -37,11 +37,12 @@ public class PriceTrackerAlarmTrigger extends BroadcastReceiver {
         Runnable periodicUpdate = new Runnable() {
             @Override
             public void run() {
-                AppDatabase appDatabase = DatabaseHandler.getInstance(context);
-                List<String> coinList = appDatabase.alertDao().getAllCoinIds();
-                if (coinList == null || coinList.isEmpty()) return;
-                Set<String> coinIdSet = new HashSet<>(coinList);
-                ServerInteractionHandler.getCoinsDataFromServerForAlertDB(coinIdSet, context.getApplicationContext());
+//                AppDatabase appDatabase = DatabaseHandler.getInstance(context);
+//                List<String> coinList = appDatabase.alertDao().getAllCoinIds();
+//                if (coinList == null || coinList.isEmpty()) return;
+//                Set<String> coinIdSet = new HashSet<>(coinList);
+//                ServerInteractionHandler.getCoinsDataFromServerForAlertDB(coinIdSet, context.getApplicationContext());
+                UtilFunctions.updateCoinsInAlertsDB(context);
             }
         };
 

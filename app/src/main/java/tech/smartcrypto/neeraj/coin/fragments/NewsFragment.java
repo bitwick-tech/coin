@@ -28,15 +28,15 @@ public class NewsFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the progress_animation for this fragment
 
 
 
         View view = inflater.inflate(R.layout.fragment_news, container, false);
-       // WebView webview = view.findViewById(R.id.webview);
-        //webview.getSettings().setJavaScriptEnabled(true);
+        WebView webview = view.findViewById(R.id.webview);
+        webview.getSettings().setJavaScriptEnabled(true);
 
-        //webview.loadUrl("https://news.google.com/news/search/section/q/cryptocurrency%20news/cryptocurrency%20news?ned=us&gl=US&hl=en");
+        webview.loadUrl("https://news.google.com/news/search/section/q/cryptocurrency%20news/cryptocurrency%20news?ned=us&gl=US&hl=en");
 
         return view;
     }

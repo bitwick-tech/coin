@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context="tech.smartcrypto.neeraj.coin.fragments.AlertsFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button_add_alert">
     <ListView
         android:id="@+id/alertList"
         android:layout_width="match_parent"
@@ -14,13 +18,17 @@
         android:paddingTop="8dp"
         android:clipToPadding="false"
         android:layout_margin="4dp"
-        android:dividerHeight="2dp"/>
+        android:dividerHeight="2dp"
+        android:layout_alignParentStart="true"
+        />
+    </RelativeLayout>
+
     <Button
         android:id="@+id/button_add_alert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:text="@string/buttonTxt_add_alert"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

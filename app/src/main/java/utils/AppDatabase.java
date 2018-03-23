@@ -7,6 +7,9 @@ import tech.smartcrypto.neeraj.coin.Alert;
 import tech.smartcrypto.neeraj.coin.AlertDao;
 import tech.smartcrypto.neeraj.coin.Coin;
 import tech.smartcrypto.neeraj.coin.CoinDao;
+import tech.smartcrypto.neeraj.coin.CoinDynamicUserData;
+import tech.smartcrypto.neeraj.coin.CoinStaticData;
+import tech.smartcrypto.neeraj.coin.CoinStaticDataDao;
 
 /**
  * Created by neerajlajpal on 01/02/18.
@@ -23,8 +26,10 @@ public abstract class AppDatabase extends RoomDatabase() {
 */
 
 
-@Database(entities = {Coin.class, Alert.class}, version = 14)
+@Database(entities = {Coin.class, Alert.class, CoinStaticData.class, CoinDynamicUserData.class}, version = 20)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract CoinDao coinDao();
     public abstract AlertDao alertDao();
+    public abstract CoinStaticDataDao coinStaticDataDao();
+//    public abstract CoinDynamicUserDataDao coinDynamicUserDataDao();
 }

@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
+    android:layout_height="128dp"
     android:background="@layout/round_corner_rectangle_list_item"
     android:layout_margin="8dp"
     android:padding="8dp">
@@ -8,7 +8,8 @@
     <ImageView
         android:id="@+id/coin_layout_user_list_coinIconIv"
         android:layout_width="60dp"
-        android:layout_height="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@color/black" />
@@ -17,7 +18,8 @@
         android:id="@+id/coin_layout_user_list_coinIdTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_margin="8dp"
+        android:textSize="24sp"
         android:layout_toEndOf="@id/coin_layout_user_list_coinIconIv"
         android:layout_alignTop="@+id/coin_layout_user_list_coinIconIv"
         />
@@ -26,39 +28,161 @@
         android:id="@+id/coin_layout_user_list_coinNameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_toEndOf="@id/coin_layout_user_list_coinIconIv"
-        android:layout_below="@+id/coin_layout_user_list_coinIdTv"
-        android:layout_toStartOf="@+id/coin_layout_user_list_cpChangeTv"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        android:layout_below="@+id/coin_layout_user_list_coinIconIv"
+        android:layout_alignParentStart="true"
         />
 
-
-
-    <TextView
-        android:id="@+id/coin_layout_user_list_cpTv"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"/>
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/coin_layout_user_list_coinIdTv"
+        android:gravity="center_vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/coin_layout_user_list_e1Ll"
+            android:layout_margin="4dp"
+            android:layout_alignParentEnd="true"
+
+            >
+
+            <TextView
+                android:id="@+id/coin_layout_user_list_e1Tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_toStartOf="@+id/coin_layout_user_list_e1CpTv"
+                />
+
+            <TextView
+                android:id="@+id/coin_layout_user_list_e1CpTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_toStartOf="@+id/coin_layout_user_list_e1UpOrDownIv"
+                android:layout_alignBottom="@+id/coin_layout_user_list_e1Tv"
+                />
+
+            <ImageView
+                android:id="@+id/coin_layout_user_list_e1UpOrDownIv"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:layout_toStartOf="@+id/coin_layout_user_list_e1PercentageTv"
+                android:layout_alignTop="@+id/coin_layout_user_list_e1PercentageTv"
+                android:layout_alignBottom="@+id/coin_layout_user_list_e1Tv"
+                />
+
+            <TextView
+                android:id="@+id/coin_layout_user_list_e1PercentageTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@+id/coin_layout_user_list_e1Tv"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/coin_layout_user_list_e2Ll"
+            android:layout_margin="4dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            android:layout_below="@+id/coin_layout_user_list_e1Ll"
+            >
+
+            <TextView
+                android:id="@+id/coin_layout_user_list_e2Tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_toStartOf="@+id/coin_layout_user_list_e2CpTv"
+                />
+
+            <TextView
+                android:id="@+id/coin_layout_user_list_e2CpTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_toStartOf="@+id/coin_layout_user_list_e2UpOrDownIv"
+                android:layout_alignBottom="@+id/coin_layout_user_list_e2Tv"
+                />
+
+            <ImageView
+                android:id="@+id/coin_layout_user_list_e2UpOrDownIv"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:layout_toStartOf="@+id/coin_layout_user_list_e2PercentageTv"
+                android:layout_alignTop="@+id/coin_layout_user_list_e2PercentageTv"
+                android:layout_alignBottom="@+id/coin_layout_user_list_e2Tv"
+                />
+
+            <TextView
+                android:id="@+id/coin_layout_user_list_e2PercentageTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@+id/coin_layout_user_list_e2Tv"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/coin_layout_user_list_e3Ll"
+            android:layout_margin="4dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            android:layout_below="@+id/coin_layout_user_list_e2Ll"
+            >
+
+            <TextView
+                android:id="@+id/coin_layout_user_list_e3Tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_toStartOf="@+id/coin_layout_user_list_e3CpTv"
+                />
+
+            <TextView
+                android:id="@+id/coin_layout_user_list_e3CpTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_toStartOf="@+id/coin_layout_user_list_e3UpOrDownIv"
+                android:layout_alignBottom="@+id/coin_layout_user_list_e3Tv"
+                />
+
+            <ImageView
+                android:id="@+id/coin_layout_user_list_e3UpOrDownIv"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:layout_toStartOf="@+id/coin_layout_user_list_e3PercentageTv"
+                android:layout_alignTop="@+id/coin_layout_user_list_e3PercentageTv"
+                android:layout_alignBottom="@+id/coin_layout_user_list_e3Tv"
+                />
+
+            <TextView
+                android:id="@+id/coin_layout_user_list_e3PercentageTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@+id/coin_layout_user_list_e3Tv"
+                />
+
+        </RelativeLayout>
 
 
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/coin_layout_user_list_cpChangeTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/coin_layout_user_list_cpTv"
-        android:layout_toStartOf="@+id/coin_layout_user_list_upOrDownIv"
-        android:visibility="invisible"
-        />
-
-    <ImageView
-        android:id="@+id/coin_layout_user_list_upOrDownIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/coin_layout_user_list_cpTv"
-        android:visibility="invisible"/>
 
 
 </RelativeLayout>

@@ -17,34 +17,39 @@ public class Alert {
     @NonNull
     private int id;
 
+    @NonNull
     @ColumnInfo(name = "coin_id")
     private String coinId;
 
-    @ColumnInfo(name = "coin_name")
-    private String coinName;
+    @NonNull
+    @ColumnInfo(name = "exchange")
+    private String ex = "international market";
 
-    @ColumnInfo(name = "low_price")
-    private float lowPrice = 0.0f;
-
-    @ColumnInfo(name = "high_price")
-    private float highPrice = 0.0f;
+    @NonNull
+    @ColumnInfo(name = "currency")
+    private String curr = "inr";
 
     @ColumnInfo(name = "current_price")
-    private float currentPrice;
+    private float cp = 0.0f;
 
-    @ColumnInfo(name = "currency")
-    private String currency;
+    @ColumnInfo(name = "low_price")
+    private float lp = 0.0f;
+
+    @ColumnInfo(name = "high_price")
+    private float hp = 0.0f;
 
     @ColumnInfo(name = "one_time")
     private boolean oneTime = true;
 
     //true means active, false means already triggered no need to trigger again
-    @ColumnInfo(name = "status_min")
-    private boolean statusMin = true;
+    @ColumnInfo(name = "status_low")
+    private boolean sl = true;
 
-    @ColumnInfo(name = "status_max")
-    private boolean statusMax = true;
+    @ColumnInfo(name = "status_high")
+    private boolean sh = true;
 
+    @ColumnInfo(name = "rank")
+    private int rank = 0;
 
 
     @NonNull
@@ -56,52 +61,55 @@ public class Alert {
         this.id = id;
     }
 
+    @NonNull
     public String getCoinId() {
         return coinId;
     }
 
-    public void setCoinId(String coinId) {
+    public void setCoinId(@NonNull String coinId) {
         this.coinId = coinId;
     }
 
-    public String getCoinName() {
-        return coinName;
+    @NonNull
+    public String getEx() {
+        return ex;
     }
 
-    public void setCoinName(String coinName) {
-        this.coinName = coinName;
+    public void setEx(@NonNull String ex) {
+        this.ex = ex;
     }
 
-    public float getLowPrice() {
-        return lowPrice;
+    @NonNull
+    public String getCurr() {
+        return curr;
     }
 
-    public void setLowPrice(float lowPrice) {
-        this.lowPrice = lowPrice;
+    public void setCurr(@NonNull String curr) {
+        this.curr = curr;
     }
 
-    public float getHighPrice() {
-        return highPrice;
+    public float getCp() {
+        return cp;
     }
 
-    public void setHighPrice(float highPrice) {
-        this.highPrice = highPrice;
+    public void setCp(float cp) {
+        this.cp = cp;
     }
 
-    public float getCurrentPrice() {
-        return currentPrice;
+    public float getLp() {
+        return lp;
     }
 
-    public void setCurrentPrice(float currentPrice) {
-        this.currentPrice = currentPrice;
+    public void setLp(float lp) {
+        this.lp = lp;
     }
 
-    public String getCurrency() {
-        return currency;
+    public float getHp() {
+        return hp;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setHp(float hp) {
+        this.hp = hp;
     }
 
     public boolean isOneTime() {
@@ -112,19 +120,27 @@ public class Alert {
         this.oneTime = oneTime;
     }
 
-    public boolean isStatusMin() {
-        return statusMin;
+    public boolean isSl() {
+        return sl;
     }
 
-    public void setStatusMin(boolean statusMin) {
-        this.statusMin = statusMin;
+    public void setSl(boolean sl) {
+        this.sl = sl;
     }
 
-    public boolean isStatusMax() {
-        return statusMax;
+    public boolean isSh() {
+        return sh;
     }
 
-    public void setStatusMax(boolean statusMax) {
-        this.statusMax = statusMax;
+    public void setSh(boolean sh) {
+        this.sh = sh;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 }

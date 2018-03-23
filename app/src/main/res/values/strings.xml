@@ -7,6 +7,11 @@
     <string name="or">or</string>
     <string name="alert_me">alert me</string>
     <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="cp">Current Price:</string>
+    <string name="op">Open Price:</string>
+    <string name="change">Change:</string>
+    <string name="highLow24hr">24 Hrs High/Low:</string>
 
 
     <string name="fragment_watchlist">Watchlist</string>
@@ -21,6 +26,7 @@
     <string name="buttonTxt_add_alert">+ Add Alert</string>
     <string name="buttonTxt_save">Save</string>
     <string name="buttonTxt_click_to_select_coin">Click here to select a coin</string>
+    <string name="buttonTxt_click_to_select_exchange">Select Exchange</string>
 
     <string name="one_time">One-Time</string>
     <string name="continuously">Continuously</string>
@@ -28,8 +34,9 @@
 
 
     <string name="coinApiUrl">http://www.smartcrypto.tech/coins/</string>
-
+    <string name="coinPriceAPIURL">http://www.smartcrypto.tech/coinprice/</string>
     <string name="frequencyApiUrl">http://www.smartcrypto.tech/frequency/</string>
+    <string name="staticImgURL">http://www.smartcrypto.tech/static/img/</string>
 
 
     <string name="delete">delete</string>

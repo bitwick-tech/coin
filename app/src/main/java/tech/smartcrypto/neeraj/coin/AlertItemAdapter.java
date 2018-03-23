@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.common.base.Joiner;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -36,16 +37,16 @@ public class AlertItemAdapter extends ArrayAdapter<Alert> {
         View v = convertView;
         AlertHolder h = null;
         if (v == null) {
-            // Inflate row layout
+            // Inflate row progress_animation
             LayoutInflater inf = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inf.inflate(R.layout.alert_layout_user_list_row, parent, false);
-            // Look for Views in the layout
+            // Look for Views in the progress_animation
 
 
             TextView alertIdTv = v.findViewById(R.id.alert_layout_user_list_alertId); //always hidden... only to fetch id to access alert from database
             ImageView coinIv = v.findViewById(R.id.alert_layout_user_list_coinIV);
             TextView coinIdTv = v.findViewById(R.id.alert_layout_user_list_coinIdTv);
-            //TextView currencyTv = v.findViewById(R.id.alert_layout_user_list_currencyTv);
+            TextView exTv = v.findViewById(R.id.alert_layout_user_list_exIdTv);
             ImageView upIv = v.findViewById(R.id.alert_layout_user_list_upIv);
             ImageView downIv = v.findViewById(R.id.alert_layout_user_list_downIv);
             TextView cpTv = v.findViewById(R.id.alert_layout_user_list_cpTv);
@@ -59,7 +60,7 @@ public class AlertItemAdapter extends ArrayAdapter<Alert> {
             h.alertIdTv = alertIdTv; //always hidden... only to fetch id to access alert from database
             h.coinIv = coinIv ;
             h.coinIdTv = coinIdTv;
-            //h.currencyTv = currencyTv;
+            h.exTv = exTv;
             h.upIv = upIv;
             h.downIv = downIv;
             h.cpTv = cpTv;
@@ -76,30 +77,34 @@ public class AlertItemAdapter extends ArrayAdapter<Alert> {
         Alert alert = alertList.get(position);
 
         h.alertIdTv.setText(Integer.toString(alert.getId()));
-        int imgId = UtilFunctions.getResourseId(getContext(), alert.getCoinId(), "drawable", getContext().getPackageName());
-        if(imgId >= 0) h.coinIv.setImageResource(imgId);
-        String[] coinName = alert.getCoinId().split("__");
-        coinName[0] = coinName[0].toUpperCase();
-        h.coinIdTv.setText(Joiner.on(" ").join(coinName));
-        //h.currencyTv.setText(alert.getCurrency());
-        if(alert.getHighPrice() <= 0.0f) {
+//        int imgId = UtilFunctions.getResourseId(getContext(), alert.getCoinId(), "drawable", getContext().getPackageName());
+//        if(imgId >= 0) h.coinIv.setImageResource(imgId);
+
+        Picasso.get()
+                .load(ctx.getResources().getString(R.string.staticImgURL) + alert.getCoinId() + ".png")
+                .into(h.coinIv);
+
+
+        h.coinIdTv.setText(alert.getCoinId().toUpperCase());
+        h.exTv.setText(UtilFunctions.capitalizeFirstChar(alert.getEx()) + "  ");
+        if(alert.getHp() <= 0.0f) {
             h.hpTv.setVisibility(View.INVISIBLE);
             h.upIv.setVisibility(View.INVISIBLE);
         }
-        if(alert.getLowPrice() <= 0.0f) {
+        if(alert.getLp() <= 0.0f) {
             h.lpTv.setVisibility(View.INVISIBLE);
             h.downIv.setVisibility(View.INVISIBLE);
         }
         //h.downIv.setImageResource();
-        h.cpTv.setText(" INR " + UtilFunctions.formatFloatTo4Decimals(alert.getCurrentPrice()));
+        h.cpTv.setText(" INR " + UtilFunctions.formatFloatTo4Decimals(alert.getCp()));
 
         int color;
-        if(alert.getLowPrice() > 0.0f && alert.getLowPrice() > alert.getCurrentPrice()) {
+        if(alert.getLp() > 0.0f && alert.getLp() > alert.getCp()) {
             color = ContextCompat.getColor(getContext(), R.color.red);
             h.cpTv.setTextColor(color);
             h.lpTv.setTextColor(color);
         }
-        else if(alert.getHighPrice() > 0.0f && alert.getHighPrice() < alert.getCurrentPrice()) {
+        else if(alert.getHp() > 0.0f && alert.getHp() < alert.getCp()) {
             color = ContextCompat.getColor(getContext(), R.color.green);
             h.cpTv.setTextColor(color);
             h.hpTv.setTextColor(color);
@@ -112,8 +117,8 @@ public class AlertItemAdapter extends ArrayAdapter<Alert> {
         }
         //h.upWithPriceIv.setImageResource();
         //h.downWithPriceIv.setImageResource();
-        h.hpTv.setText(UtilFunctions.formatFloatTo4Decimals(alert.getHighPrice()));
-        h.lpTv.setText(UtilFunctions.formatFloatTo4Decimals(alert.getLowPrice()));
+        h.hpTv.setText(UtilFunctions.formatFloatTo4Decimals(alert.getHp()));
+        h.lpTv.setText(UtilFunctions.formatFloatTo4Decimals(alert.getLp()));
 
         return v;
     }
@@ -123,7 +128,7 @@ public class AlertItemAdapter extends ArrayAdapter<Alert> {
         TextView alertIdTv; //always hidden... only to fetch id to access alert from database
         ImageView coinIv;
         TextView coinIdTv;
-        TextView currencyTv;
+        TextView exTv;
         ImageView upIv;
         ImageView downIv;
         TextView cpTv;

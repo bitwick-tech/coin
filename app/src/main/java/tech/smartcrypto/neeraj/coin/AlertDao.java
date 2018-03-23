@@ -1,6 +1,7 @@
 package tech.smartcrypto.neeraj.coin;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -20,6 +21,9 @@ public interface AlertDao {
     @Query("SELECT * FROM alerts")
     LiveData<List<Alert>> getAll();
 
+    @Query("SELECT DISTINCT coin_id, exchange, currency FROM alerts")
+    List<CoinIdExCurr> getAllCoinIdExCurr();
+
     @Query("SELECT * FROM alerts")
     List<Alert> getAllList();
 
@@ -32,8 +36,8 @@ public interface AlertDao {
     @Query("SELECT coin_id FROM alerts")
     List<String> getAllCoinIds();
 
-    @Query("UPDATE alerts SET current_price=(:cp) WHERE coin_id=(:coinId)")
-    void updateCoinPrice(String coinId, float cp);
+    @Query("UPDATE alerts SET current_price=(:cp) WHERE coin_id=(:coinId) AND exchange=(:ex) AND currency=(:curr)")
+    void updateCoinPrice(float cp, String coinId, String ex, String curr);
 
     /**
      @Query("SELECT * FROM Alert WHERE first_name LIKE :first AND "
@@ -55,4 +59,14 @@ public interface AlertDao {
 
     @Update
     void updateAlert(Alert alert);
+
+    class CoinIdExCurr {
+        @ColumnInfo(name="coin_id")
+        public String coinId;
+        @ColumnInfo(name="exchange")
+        public String ex;
+        @ColumnInfo(name="currency")
+        public String curr;
+    }
+
 }
