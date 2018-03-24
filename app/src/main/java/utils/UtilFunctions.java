@@ -13,9 +13,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
@@ -80,18 +77,10 @@ public class UtilFunctions {
     }
 
     public static void updateWatchlistCoinData(Context ctx) {
-        updateWatchlistCoinData(ctx, "", null);
+        updateWatchlistCoinData(ctx, "");
     }
 
-    public static void updateWatchlistCoinData(Context ctx, String coinId) {
-        updateWatchlistCoinData(ctx, coinId, null);
-    }
-
-    public static void updateWatchlistCoinData(Context ctx, SwipeRefreshLayout mSwipeRefreshLayout) {
-        updateWatchlistCoinData(ctx, "", mSwipeRefreshLayout);
-    }
-
-    public static void updateWatchlistCoinData(Context ctx, String coinId, SwipeRefreshLayout mSwipeRefreshLayout){
+    public static void updateWatchlistCoinData(Context ctx, String coinId){
         if(ctx == null) return;
         Runnable task = new Runnable() {
             @Override
@@ -106,17 +95,16 @@ public class UtilFunctions {
                 }
 
                 if (coinIdList == null || coinIdList.isEmpty()) {
-                    if(mSwipeRefreshLayout != null && mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
                     return;
                 }
-                upDateCoinDBFromServerData(coinIdList, ctx.getApplicationContext(), mSwipeRefreshLayout);
+                upDateCoinDBFromServerData(coinIdList, ctx.getApplicationContext());
             }
         };
         Thread thread = new Thread(task);
         thread.start();
     }
 
-    public static void upDateCoinDBFromServerData(List<CoinDao.CoinIdExCurr> coinIdList, Context ctx, SwipeRefreshLayout mSwipeRefreshLayout) {
+    public static void upDateCoinDBFromServerData(List<CoinDao.CoinIdExCurr> coinIdList, Context ctx) {
         if(coinIdList == null || coinIdList.size() < 1) return;
         String url = "http://www.smartcrypto.tech/coinprice/?q=";
         StringBuilder stringBuilder = new StringBuilder();
@@ -134,15 +122,12 @@ public class UtilFunctions {
                                 saveCoinsToWatchlistDB(coinResult, ctx);
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                            } finally {
-                                if(mSwipeRefreshLayout != null && mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
                             }
                         }
                     }
                     @Override
                     public void onErrorResponse(VolleyError result) {
                         //on error response
-                        if(mSwipeRefreshLayout != null && mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
                     }
                 });
     }

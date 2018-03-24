@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +55,7 @@ public class WatchlistFragment extends Fragment {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        UtilFunctions.updateWatchlistCoinData(getContext(), mSwipeRefreshLayout);
+                        UtilFunctions.updateWatchlistCoinData(getContext());
                     }
                 }
         );
@@ -68,7 +67,7 @@ public class WatchlistFragment extends Fragment {
                     @Override
                     public void run() {
                         mSwipeRefreshLayout.setRefreshing(true);
-                        UtilFunctions.updateWatchlistCoinData(getContext(), mSwipeRefreshLayout);
+                        UtilFunctions.updateWatchlistCoinData(getContext());
                         handler.postDelayed(this, updateInterval * 1000);
                     }
                 });
@@ -80,7 +79,6 @@ public class WatchlistFragment extends Fragment {
         LiveData<List<Coin>> coinList = DatabaseHandler.getInstance(getActivity()).coinDao().getAll();
         ListView coinListView = view.findViewById(R.id.coinList);
         coinList.observe(this, (List<Coin> coins) -> {
-            //TODO single coin in watchlist deletion not reflecting in same screen
             if(coins != null && coins.size() > 0) {
 
                 Map<String, List<Coin>> coinsHash = UtilFunctions.getCoinsHashFromList(coins);
@@ -107,9 +105,11 @@ public class WatchlistFragment extends Fragment {
             }
             else {
                 coinListView.setAdapter(new CoinItemAdapter(getActivity(), null, null, new ArrayList<>()));
-                mSwipeRefreshLayout.setRefreshing(false);
+
             }
+            if(mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
         });
+
 
         //add coin button
         Button button = view.findViewById(R.id.button_add_coin);
