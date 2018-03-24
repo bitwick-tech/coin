@@ -51,14 +51,13 @@ public class WatchlistFragment extends Fragment {
 
 
         mSwipeRefreshLayout = view.findViewById(R.id.swiperefresh);
-        mSwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        UtilFunctions.updateWatchlistCoinData(getContext());
-                    }
-                }
-        );
+        SwipeRefreshLayout.OnRefreshListener swipeRefreshListner = new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                UtilFunctions.updateWatchlistCoinData(getContext());
+            }
+        };
+        mSwipeRefreshLayout.setOnRefreshListener(swipeRefreshListner);
 
         Runnable refresh = new Runnable() {
             @Override
@@ -66,8 +65,8 @@ public class WatchlistFragment extends Fragment {
                 mSwipeRefreshLayout.post(new Runnable() {
                     @Override
                     public void run() {
-                        mSwipeRefreshLayout.setRefreshing(true);
-                        UtilFunctions.updateWatchlistCoinData(getContext());
+//                        mSwipeRefreshLayout.setRefreshing(true);
+                        swipeRefreshListner.onRefresh();
                         handler.postDelayed(this, updateInterval * 1000);
                     }
                 });
