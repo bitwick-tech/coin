@@ -1,5 +1,6 @@
 package tech.smartcrypto.neeraj.coin;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
@@ -51,10 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO start service from here by calling broadcast receiver
         if(!AlertService.isServiceRunning){
-            Intent intent = UtilFunctions.handleDeviceManufacturer();
+            Intent intent = UtilFunctions.handleDeviceManufacturer(this);
             if  (intent != null) {
-                Toast.makeText(getApplicationContext(),"Give permission to not miss any alert.",Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                try{
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"Give permission to not miss any alert.",Toast.LENGTH_LONG).show();
+                }
+                catch (ActivityNotFoundException exception) {
+                }
             }
         }
 

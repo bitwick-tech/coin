@@ -179,12 +179,10 @@ public class ServerInteractionHandler {
                 new VolleyCallback() {
                     @Override
                     public void onSuccessResponse(JSONObject result) {
-                        if(this != null) {
-                            try {
-                                UtilFunctions.addCoinsStaticDataToDB(result, ctx.getApplicationContext());
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                        try {
+                            UtilFunctions.addCoinsStaticDataToDB(result, ctx.getApplicationContext());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
                     @Override

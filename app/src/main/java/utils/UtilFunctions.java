@@ -381,8 +381,11 @@ public class UtilFunctions {
         }
     }
 
-    public static Intent handleDeviceManufacturer() {
+    public static Intent handleDeviceManufacturer(Context ctx) {
         try {
+            String autoRunPermission = getDataFromSharedPref(ctx, "a_r_p");
+            if(autoRunPermission != null && !autoRunPermission.isEmpty())
+                return null;
             Intent intent = new Intent();
             String manufacturer = Build.MANUFACTURER;
             String brand = Build.BRAND;
@@ -395,6 +398,7 @@ public class UtilFunctions {
             } else {
                 intent = null;
             }
+            addDataToSharedPref("a_r_p", "1", ctx);
             return intent;
         } catch (Exception e) {
             //do nothing
@@ -408,9 +412,16 @@ public class UtilFunctions {
         for(Map.Entry<String, String> entry : map.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            if(key == null || value == null || key.isEmpty()) continue;
+            if(key == null || key.isEmpty()) continue;
             editor.putString(key, value);
         }
+        editor.apply();
+    }
+
+    public static void addDataToSharedPref(String key, String value, Context ctx) {
+        if(key == null || key.isEmpty()) return;
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(ctx).edit();
+        editor.putString(key, value);
         editor.apply();
     }
 
