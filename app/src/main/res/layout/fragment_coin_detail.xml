@@ -82,8 +82,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/fragment_coin_detail_parentLl"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginHorizontal="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_above="@+id/fragment_coin_detail_adView"
         />
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fragment_coin_detail_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-5632531601458324/7173142898"
+        >
+    </com.google.android.gms.ads.AdView>
 
 
 </RelativeLayout>
+
+    <!--ads:adUnitId="ca-app-pub-3940256099942544/6300978111"  test-->
+    <!--ads:adUnitId="ca-app-pub-5632531601458324/7173142898"-->

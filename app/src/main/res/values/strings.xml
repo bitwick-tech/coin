@@ -12,6 +12,8 @@
     <string name="op">Open Price:</string>
     <string name="change">Change:</string>
     <string name="highLow24hr">24 Hrs High/Low:</string>
+    <string name="addCoinMsg">Click\n\"+ADD COIN\" Button\nto add your first coin.</string>
+    <string name="addAlertMsg">Click\n\"+ADD ALERT\" Button\nto add your first alert.</string>
 
 
     <string name="fragment_watchlist">Watchlist</string>

@@ -10,6 +10,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
@@ -37,10 +41,23 @@ public class AlertsFragment extends Fragment{
         // Inflate the progress_animation for this fragment
         View view = inflater.inflate(R.layout.fragment_alerts, container, false);
 
+
+        AdView mAdView = view.findViewById(R.id.fragment_alerts_adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        TextView addAlertTv = view.findViewById(R.id.fragment_alerts_addAlertMsgTv);
+
         // Alerts list
         LiveData<List<Alert>> alertList = DatabaseHandler.getInstance(getActivity()).alertDao().getAll();
         ListView alertListView = view.findViewById(R.id.alertList);
         alertList.observe(this, (List<Alert> alerts) -> {
+                if(alerts != null && alerts.size() > 0) {
+                    addAlertTv.setVisibility(View.GONE);
+                }
+                else {
+                    addAlertTv.setVisibility(View.VISIBLE);
+                }
                 alertListView.setAdapter(new AlertItemAdapter(getActivity(), alerts));
                 alertListView.setOnItemClickListener(new OnItemClickListener() {
                     @Override

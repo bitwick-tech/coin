@@ -18,7 +18,7 @@
         android:id="@+id/coin_layout_user_list_coinIdTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="4dp"
         android:textSize="24sp"
         android:layout_toEndOf="@id/coin_layout_user_list_coinIconIv"
         android:layout_alignTop="@+id/coin_layout_user_list_coinIconIv"

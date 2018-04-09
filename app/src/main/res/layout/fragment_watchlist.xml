@@ -6,13 +6,27 @@
     tools:context="tech.smartcrypto.neeraj.coin.fragments.WatchlistFragment"
     android:id="@+id/fragment_watchlist">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_watchlist_addCoinMsgTv"
+        android:text="@string/addCoinMsg"
+        android:layout_margin="4dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        />
+
+
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"
-        android:paddingTop="8dp"
+        android:paddingTop="4dp"
         android:clipToPadding="false"
         android:layout_margin="4dp"
         android:dividerHeight="2dp"
@@ -26,13 +40,28 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+
     <Button
         android:id="@+id/button_add_coin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:text="@string/buttonTxt_add_coin"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        />
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fragment_watchlist_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        android:visibility="gone"
+        >
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>
 

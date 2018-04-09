@@ -215,7 +215,8 @@ public class UtilFunctions {
         } else
             return;
 
-        String title = DatabaseHandler.getInstance(ctx).coinStaticDataDao().getNameById(alert.getCoinId());
+        String title = DatabaseHandler.getInstance(ctx).coinStaticDataDao().getNameById(alert.getCoinId())
+                        + " " + capitalizeFirstChar(alert.getEx());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_HIGH);
@@ -350,24 +351,35 @@ public class UtilFunctions {
 //    }
 
     public static String formatFloatTo4Decimals(float f) {
-        if(f < 1) {
-            String tmp =  String.format(Locale.getDefault(),"%.6f", f);
-            return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
-        } else if(f < 10) {
-            String tmp =  String.format(Locale.getDefault(),"%.4f", f);
-            return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
-        } else if(f < 1000) {
-            String tmp =  String.format(Locale.getDefault(),"%.2f", f);
-            return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
-        } else {
-            String tmp = String.format(Locale.getDefault(), "%.0f", f);
-            return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
+        if(f == 0.0f) return "0.00";
+        try {
+            if (f < 1) {
+                String tmp = String.format(Locale.getDefault(), "%.6f", f);
+                return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
+            } else if (f < 10) {
+                String tmp = String.format(Locale.getDefault(), "%.4f", f);
+                return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
+            } else if (f < 1000) {
+                String tmp = String.format(Locale.getDefault(), "%.2f", f);
+                return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
+            } else {
+                String tmp = String.format(Locale.getDefault(), "%.0f", f);
+                return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
+            }
+        }
+        catch (NumberFormatException e) {
+            return "0.00";
         }
     }
 
     public static String formatFloatTo4DecimalsPercentage(float f) {
-        String tmp =  String.format(Locale.getDefault(),"%.2f", f);
-        return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
+        try {
+            String tmp = String.format(Locale.getDefault(), "%.2f", f);
+            return NumberFormat.getNumberInstance(Locale.getDefault()).format(Float.parseFloat(tmp));
+        }
+        catch (NumberFormatException e) {
+            return "0.00";
+        }
     }
 
     public static float deformatStringToFloat(String s) {

@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -53,6 +55,9 @@ public class CoinDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_coin_detail, container, false);
 
 
+        AdView mAdView = view.findViewById(R.id.fragment_coin_detail_adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {

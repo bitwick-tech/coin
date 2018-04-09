@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
+import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+//        MobileAds.initialize(this, "ca-app-pub-3940256099942544");
+        MobileAds.initialize(this, "ca-app-pub-5632531601458324~9378626108");
+
 
         //TODO start service from here by calling broadcast receiver
         if(!AlertService.isServiceRunning){

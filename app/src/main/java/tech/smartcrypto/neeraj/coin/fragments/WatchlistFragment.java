@@ -16,6 +16,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +53,12 @@ public class WatchlistFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_watchlist, container, false);
 
 
+//        AdView mAdView = view.findViewById(R.id.fragment_watchlist_adView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
+
+        TextView addCoinTv = view.findViewById(R.id.fragment_watchlist_addCoinMsgTv);
         mSwipeRefreshLayout = view.findViewById(R.id.swiperefresh);
         SwipeRefreshLayout.OnRefreshListener swipeRefreshListner = new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -79,7 +88,7 @@ public class WatchlistFragment extends Fragment {
         ListView coinListView = view.findViewById(R.id.coinList);
         coinList.observe(this, (List<Coin> coins) -> {
             if(coins != null && coins.size() > 0) {
-
+                addCoinTv.setVisibility(View.GONE);
                 Map<String, List<Coin>> coinsHash = UtilFunctions.getCoinsHashFromList(coins);
                 List<String> coinIdList = new ArrayList<>(coinsHash.keySet());
                 List<CoinStaticDataDao.CoinIdAndName> coinStaticDataList= DatabaseHandler.getInstance(getActivity()).coinStaticDataDao().getCoinIdAndNameListByIds(coinIdList.toArray(new String[coinsHash.size()]));
@@ -104,7 +113,7 @@ public class WatchlistFragment extends Fragment {
             }
             else {
                 coinListView.setAdapter(new CoinItemAdapter(getActivity(), null, null, new ArrayList<>()));
-
+                addCoinTv.setVisibility(View.VISIBLE);
             }
             if(mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
         });

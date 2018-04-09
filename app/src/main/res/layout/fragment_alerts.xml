@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context="tech.smartcrypto.neeraj.coin.fragments.AlertsFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_alerts_addAlertMsgTv"
+        android:text="@string/addAlertMsg"
+        android:layout_margin="4dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +40,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonTxt_add_alert"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/fragment_alerts_adView"
         />
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fragment_alerts_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-5632531601458324/3474938018"
+        >
+    </com.google.android.gms.ads.AdView>
+
 </RelativeLayout>
+
+    <!--ads:adUnitId="ca-app-pub-3940256099942544/6300978111"    test-->
+    <!--ads:adUnitId="ca-app-pub-5632531601458324/3474938018"-->
